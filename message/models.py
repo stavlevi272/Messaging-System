@@ -41,7 +41,6 @@ class Message(models.Model):
             self.was_deleted_by_receiver = True
 
 
-#todo move to anther class and file
 def model_to_dict(model):
     message_num = 1
     user_all_messages = {}

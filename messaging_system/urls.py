@@ -22,6 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('message-management/token/auth', CustomAuthToken.as_view()),
     path('message-management/', include('message.urls')),
-    # path('', home),
-    # path('accounts/login/', login_view),
 ]
