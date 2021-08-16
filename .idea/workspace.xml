@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0033552e-2dcd-4848-95d0-1470d386552e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/message/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging_system/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/messaging_system/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/message/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/message/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -155,6 +153,7 @@
       <workItem from="1628959131575" duration="10322000" />
       <workItem from="1629018966523" duration="15891000" />
       <workItem from="1629038630852" duration="20678000" />
+      <workItem from="1629132626897" duration="494000" />
     </task>
     <servers />
   </component>
@@ -166,7 +165,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -51,7 +51,6 @@ def model_to_dict(model):
             'subject': message.subject,
             'content': message.content,
             'creation date': message.creation_date,
-            'was_read': message.was_read
         }
         user_all_messages[message_num] = form
         message_num += 1
