@@ -41,19 +41,19 @@ class Message(models.Model):
             self.was_deleted_by_receiver = True
 
 
-def model_to_dict(model):
-    message_num = 1
-    user_all_messages = {}
-    for message in model:
-        form = {
-            'sender': message.sender.username,
-            'receiver': message.receiver.username,
-            'subject': message.subject,
-            'content': message.content,
-            'creation date': message.creation_date,
-        }
-        user_all_messages[message_num] = form
-        message_num += 1
-    return user_all_messages
+# def model_to_dict(model):
+#     message_num = 1
+#     user_all_messages = {}
+#     for message in model:
+#         form = {
+#             'sender': message.sender.username,
+#             'receiver': message.receiver.username,
+#             'subject': message.subject,
+#             'content': message.content,
+#             'creation date': message.creation_date,
+#         }
+#         user_all_messages[message_num] = form
+#         message_num += 1
+#     return user_all_messages
 
 

@@ -9,7 +9,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.decorators import authentication_classes, permission_classes, api_view
 from rest_framework.response import Response
-from message.models import Message, model_to_dict
+from message.models import Message
+from message.serializers import MessageSerializer
 
 
 @authentication_classes([authentication.TokenAuthentication])
@@ -22,7 +23,7 @@ def get_all_messages(request):
                 Q(receiver=user.id, was_deleted_by_receiver=False))
     if not user_all_messages:
         return JsonResponse({"response": "No messages were found for the current user"})
-    return JsonResponse(model_to_dict(user_all_messages))
+    return JsonResponse(MessageSerializer.serialize_to_json(user_all_messages))
 
 
 @authentication_classes([authentication.TokenAuthentication])
@@ -31,19 +32,12 @@ def get_all_messages(request):
 def get_message_by_id(request, message_id):
     try:
         message = Message.objects.get(id=message_id)
-        message_data = {
-            'sender': message.sender.username,
-            'receiver': message.receiver.username,
-            'subject': message.subject,
-            'content': message.content,
-            'creation date': message.creation_date,
-        }
         user = request.user
-        if message.receiver == user.username:
-            message.mark_read()
-            message.save()
-        if message.receiver == user.username or message.sender == user.username:
-            return JsonResponse(message_data)
+        if message.receiver.username == user.username or message.sender.username == user.username:
+            if message.receiver == user.username:
+                message.mark_read()
+                message.save()
+            return JsonResponse(MessageSerializer.serialize_to_json([message]))
         else:
             return JsonResponse({"response": "You don't have permission to see the message"})
     except ObjectDoesNotExist as ex:
@@ -61,7 +55,7 @@ def get_all_unread_messages(request):
                 was_deleted_by_receiver=False)
     if not user_unread_messages:
         return JsonResponse({"response": "all messages were read"})
-    return JsonResponse(model_to_dict(user_unread_messages))
+    return JsonResponse(MessageSerializer.serialize_to_json(user_unread_messages))
 
 
 @authentication_classes([authentication.TokenAuthentication])
@@ -77,7 +71,7 @@ def mark_message_as_deleted_by_id(request, message_id):
             message.save()
             return JsonResponse({"response": "The message was deleted successfully"})
         else:
-            return JsonResponse({"response": "You don't have permission to see the message"})
+            return JsonResponse({"response": "You don't have permission to delete the message"})
     except ObjectDoesNotExist as ex:
         return JsonResponse({"response": "The message doesn't exist"})
 
